@@ -8,4 +8,5 @@ public interface PlantRepository extends MongoRepository<Plant,String> {
 
     public Plant findById(long id);
 
+    public String deletePlantByCommonName(String commonName);
 }

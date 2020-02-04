@@ -3,6 +3,9 @@ package plants;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -13,6 +16,9 @@ import plants.growthData.PlantData;
 import plants.repository.GrowthRepository;
 
 import java.util.List;
+
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.contains;
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.exact;
 
 @RestController
 public class GrowthController {
@@ -77,6 +83,20 @@ public class GrowthController {
             throw new RequestException("plant growth info with name of:" + commonName + " not found, please try querying by another name");
         }
         return growth;
+    }
+
+    @RequestMapping(value = "/growth/all", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public List<Growth> getAllThatMatch(@RequestParam("key") String key, @RequestParam("value") String value) throws RequestException {
+
+        Growth growth = new Growth(key, value);
+
+        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreNullValues();//.withMatcher("commonName", exact());
+
+        Example<Growth> example = Example.of(growth, matcher);
+
+        List<Growth> growths = growthRepository.findAll(example);
+        return growths;
     }
 
     // Delete growth data by id

@@ -1,5 +1,6 @@
 package plants;
 
+import org.apache.coyote.Request;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import plants.repository.PlantRepository;
-
 
 @RestController
 public class PlantController {
@@ -70,12 +70,24 @@ public class PlantController {
     }
 
     // Delete plant data by id
-
+    @RequestMapping(value = "/plant", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public String deletePlantById(@RequestParam("id") long id) {
+        plantRepository.deleteById(String.valueOf(id));
+        return "plant has been deleted";
+    }
 
     // Delete plant data by common name
+    @RequestMapping(value = "/plant/name", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public String deletePlantByName(@RequestParam("commonName") String commonName) throws RequestException {
+        String res = plantRepository.deletePlantByCommonName(commonName);
 
+        if(!res.equals("1")){
+            throw new RequestException("no plant by the name of: " + commonName + " found");
+        }
 
-    // Update plant growth images information
-
+        return res + " plant has been deleted";
+    }
 
 }

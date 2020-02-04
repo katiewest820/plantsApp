@@ -7,7 +7,7 @@ import plants.growthData.*;
 import java.util.List;
 
 public class Growth {
-    private long id;
+    private Long id;
     private List<ImageUrl> images;
     private String family_common_name;
     private String duration;
@@ -22,19 +22,54 @@ public class Growth {
     private PrecipitationMaximum precipitation_maximum;
     private PlantingDensityMinimum planting_density_minimum;
     private PlantingDensityMaximum planting_density_maximum;
-    private float ph_minimum;
-    private float ph_maximum;
+    private Float ph_minimum;
+    private Float ph_maximum;
     private String moisture_use;
     private String hedge_tolerance;
-    private float frost_free_days_minimum;
+    private Float frost_free_days_minimum;
     private String fire_tolerance;
     private String fertility_requirement;
     private String drought_tolerance;
-    private boolean cold_stratification_required;
+    private Boolean cold_stratification_required;
     private String caco_3_tolerance;
     private String anaerobic_tolerance;
 
     public Growth() {
+    }
+
+    public Growth(String key, Object value) throws IllegalArgumentException { // TODO implement more params here
+        switch (key) {
+            case "id" :
+                if(value instanceof Long) {
+                    setId((long)value);
+                } else {
+                    throw new IllegalArgumentException("wrong data type provided for ID, expected Long");
+                }
+                break;
+            case "commonName" :
+                if(value instanceof String) {
+                    setCommonName((String)value);
+                } else {
+                    throw new IllegalArgumentException("wrong data type provied for commonName, expected String");
+                }
+                break;
+            case "scientific_name" :
+                if(value instanceof String) {
+                    setScientific_name((String)value);
+                } else {
+                    throw new IllegalArgumentException("wrong data type provided for scientific_name, expected String");
+                }
+                break;
+            case "shade_tolerance" :
+                if(value instanceof String) {
+                    setShade_tolerance((String)value);
+                } else {
+                    throw new IllegalArgumentException("wrong data type provided for shade_tolerance, expected String");
+                }
+                break;
+            default :
+                throw new IllegalArgumentException("you tried to search by a param that isn't currently supported, try querying by shade_tolerance, commonName, ID or scientific_name");
+        }
     }
 
     public long getId() {
