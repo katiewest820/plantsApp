@@ -1,0 +1,38 @@
+type Query {
+  plantScheduleById(id: ID): PlantSchedule
+  plantScheduleByName(commonName: String): PlantSchedule
+}
+
+type Mutation {
+  plantSchedule(
+    id: ID!,
+    commonName: String!,
+    scientific_name: String!,
+    lastWaterDate: String!,
+    nextWaterDate: String!,
+    lastFertilizeDate: String!,
+    nextFertilizeDate: String!,
+    monthlyWaterFrequency: Int!,
+    monthlyFertilizeFrequency: Int!
+  ): PlantSchedule
+
+  deletePlantSchedule(id: ID!): StringResponse
+}
+
+type PlantSchedule {
+  id: ID
+  commonName: String
+  scientific_name: String
+  lastWaterDate: String
+  nextWaterDate: String
+  lastFertilizeDate: String
+  nextFertilizeDate: String
+  monthlyWaterFrequency: Int
+  monthlyFertilizeFrequency: Int
+}
+
+type StringResponse {
+  successResponse: String
+  failureResponse: String
+}
+

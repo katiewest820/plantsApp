@@ -30,6 +30,7 @@ dependencies {
     implementation("com.graphql-java:graphql-java-spring-boot-starter-webmvc:1.0")
     implementation("com.google.guava:guava:26.0-jre")
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile group: 'com.coxautodev', name: 'graphql-java-tools', version: '2.1.2'
     testCompile("org.springframework.boot:spring-boot-starter-test")
     compile("org.apache.httpcomponents:httpclient:4.5.10")
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")

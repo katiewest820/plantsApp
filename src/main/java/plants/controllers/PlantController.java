@@ -1,4 +1,4 @@
-package plants;
+package plants.controllers;
 
 import org.apache.coyote.Request;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import plants.Plant;
+import plants.RequestException;
 import plants.repository.PlantRepository;
 
 @RestController

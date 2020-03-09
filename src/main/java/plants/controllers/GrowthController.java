@@ -1,4 +1,4 @@
-package plants;
+package plants.controllers;
 
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import plants.Growth;
+import plants.RequestException;
 import plants.growthData.ImageUrl;
 import plants.growthData.PlantData;
 import plants.repository.GrowthRepository;

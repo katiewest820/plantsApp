@@ -25,8 +25,8 @@ public class PlantSchedule {
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate nextFertilizeDate;
 
-    private Integer waterFrequency; // change to monthlyWaterFrequency
-    private Integer fertilizeFrequency; // change to monthlyFertilizeFrequency
+    private Integer monthlyWaterFrequency;
+    private Integer monthlyFertilizeFrequency;
 
 
     public PlantSchedule() {
@@ -96,19 +96,19 @@ public class PlantSchedule {
         this.nextFertilizeDate = generateDate(nextFertilizeDate);
     }
 
-    public Integer getWaterFrequency() {
-        return waterFrequency;
+    public Integer getMonthlyWaterFrequency() {
+        return monthlyWaterFrequency;
     }
 
-    public void setWaterFrequency(Integer waterFrequency) {
-        this.waterFrequency = waterFrequency;
+    public void setMonthlyWaterFrequency(Integer monthlyWaterFrequency) {
+        this.monthlyWaterFrequency = monthlyWaterFrequency;
     }
 
-    public Integer getFertilizeFrequency() {
-        return fertilizeFrequency;
+    public Integer getMonthlyFertilizeFrequency() {
+        return monthlyFertilizeFrequency;
     }
 
-    public void setFertilizeFrequency(Integer fertilizeFrequency) {
-        this.fertilizeFrequency = fertilizeFrequency;
+    public void setMonthlyFertilizeFrequency(Integer monthlyFertilizeFrequency) {
+        this.monthlyFertilizeFrequency = monthlyFertilizeFrequency;
     }
 }
